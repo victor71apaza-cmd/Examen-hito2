@@ -7,5 +7,7 @@ import java.util.List;
 public interface UsuarioService {
     UsuarioDto guardar (UsuarioDto usuarioDto);
     List<UsuarioDto> listar();
+    List<UsuarioDto> listarUsuario();
+    UsuarioDto guardarAdmin (UsuarioDto usuarioDto);
 
 }
