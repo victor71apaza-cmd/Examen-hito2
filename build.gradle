@@ -8,8 +8,8 @@ group = 'com.unifranz'
 version = '0.0.1-SNAPSHOT'
 description = 'ProgramacionTres'
 
-java {
-    toolchain {
+ java {
+     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }

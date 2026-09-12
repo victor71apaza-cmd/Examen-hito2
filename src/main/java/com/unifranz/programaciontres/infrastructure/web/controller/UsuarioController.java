@@ -11,27 +11,28 @@ import java.util.List;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
+
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping
-    public ResponseEntity<UsuarioDto> guardar (@RequestBody UsuarioDto usuarioDto) {
-        UsuarioDto usuario = usuarioService.guardar(usuarioDto);
-        return ResponseEntity.ok(usuario);
-    }
     @GetMapping
-    public ResponseEntity<List<UsuarioDto>> listar() {
-        return ResponseEntity.ok(usuarioService.listar());
+    public ResponseEntity<List<UsuarioDto>> listarActivos() {
+        return ResponseEntity.ok(usuarioService.listarActivos());
     }
 
-    @GetMapping("/listarUsuarios")
-    public ResponseEntity<List<UsuarioDto>> listarUsuario() {
-        return ResponseEntity.ok(usuarioService.listarUsuario());
+    @PostMapping
+    public ResponseEntity<UsuarioDto> guardar(@RequestBody UsuarioDto usuarioDto) {
+        return ResponseEntity.ok(usuarioService.guardar(usuarioDto));
     }
 
-    @PostMapping("/guardarAdmin")
-    public ResponseEntity<UsuarioDto> guardarAdmin (@RequestBody UsuarioDto usuarioDto) {
-        UsuarioDto usuario = usuarioService.guardarAdmin(usuarioDto);
-        return ResponseEntity.ok(usuario);
+    @PutMapping("/{id}")
+    public ResponseEntity<UsuarioDto> editar(@PathVariable Long id, @RequestBody UsuarioDto usuarioDto) {
+        return ResponseEntity.ok(usuarioService.editar(id, usuarioDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarLogico(@PathVariable Long id) {
+        usuarioService.eliminarLogico(id);
+        return ResponseEntity.noContent().build();
     }
 }
